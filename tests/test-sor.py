@@ -1,27 +1,9 @@
 import src.utils as u
 import src.sor as sor
-
-def generate_sparse_matrix_one_vector(dimension):
-    """
-        A function to generate a sparse matrix of dimension nxn and a vector of all ones.
-    """
-    matrix = []
-    for row in range(dimension):
-        row_vector = [0] * dimension # Init a sparse row
-        for col in range(len(row_vector)):
-            if row == col:
-                row_vector[row] = 40
-                if row > 0:
-                    row_vector[row-1] = -10
-                if row < len(row_vector) - 1:
-                    row_vector[row+1] = -10
-        matrix.append(row_vector)
-    
-    b = u.create_empty_vector(axis = 1, length=dimension, fill=1)
-    return matrix, b
+import tests.utils as u_t
 
 if __name__ == "__main__":
-    A_matrix, b_vector = generate_sparse_matrix_one_vector(5)
+    A_matrix, b_vector = u_t.generate_sparse_matrix_one_vector(5)
     EPSILON = 1e-10
 
     sor_solution_x, sor_iter_list, sor_res_list = sor.sor_iteration(A_matrix, b_vector, eps=EPSILON, omega=1.1)

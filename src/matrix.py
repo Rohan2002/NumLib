@@ -31,10 +31,11 @@ def generate_square_identity_matrix(dim):
     return matrix
 
 # TODO: Create a function to check if nxn matrix is invertible or not. (Check if RANK(mat) == n)
-def get_matrix_inverse(mat):
+def get_matrix_inverse(mat_input):
     """
         Suppose matrix A is a nxn invertible matrix, then A^-1 is the inverse of matrix A iff A*A^-1 = 0
     """
+    mat = mat_input.copy()
     if not is_square(mat):
         raise ValueError("The given matrix is not a square matrix!")
     
